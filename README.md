@@ -66,7 +66,11 @@ elmo-hikes/
 
 
 ## Contributors
+<<<<<<< HEAD
 - **Hasan Mustafa** - BCIT CST Student that likes to mess around with computer UI (Windows Ricing, Windhawk, etc), plans to go into applied comp sci and get a job somewhere in Vancouver region.
+=======
+- **Anish** - BCIT CST Student with a passion for Video games and air fryers. Fun fact: I really like air fryers!
+>>>>>>> develop
 ---
 
 
