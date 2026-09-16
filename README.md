@@ -66,6 +66,8 @@ elmo-hikes/
 
 
 ## Contributors
+- **Gabriel Edwards** - BCIT CST Student who really likes logic puzzles Fun fact: Has a massive collection of RPGs to play and recommend
+
 - **Anish** - BCIT CST Student with a passion for Video games and air fryers. Fun fact: I really like air fryers!
 ---
 
