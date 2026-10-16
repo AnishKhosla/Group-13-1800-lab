@@ -10,7 +10,7 @@ class SiteNavbar extends HTMLElement {
         this.innerHTML = `
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">REHAB
+      <a class="navbar-brand" href="#">REHABO
       </a>
 
       <button class="navbar-toggler" type="button"
@@ -39,4 +39,4 @@ class SiteNavbar extends HTMLElement {
   
 }
 
-customElements.define('site-navbar', Navbar);
+customElements.define('site-navbar', SiteNavbar);
