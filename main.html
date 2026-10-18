@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Rehabo: Home</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Other libraries go here -->
+    <script type="module" src="src/components/navbar.js"></script>
+</head>
+
+<body>
+  <site-navbar></site-navbar>
+
+  <div class="container py-3" style="max-width: 600px;">
+
+    <!-- Top row: settings (left) | title (center) | pet (right) -->
+    <div class="d-flex align-items-center justify-content-between mb-3">
+
+      <!-- Settings button (placeholder, doesn't do anything yet) -->
+      <button type="button" id="settingsBtn" class="btn btn-link text-body p-0 d-flex"
+              aria-label="Settings" style="width: 44px; height: 44px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+             class="w-100 h-100" aria-hidden="true">
+          <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+        </svg>
+      </button>
+
+      <!-- Title (main.js fills in the name and adds the "!") -->
+      <h1 class="h2 fw-bold mb-0 text-center">Home of <span id="name-goes-here">friend</span></h1>
+
+      <!-- Pet button (placeholder, doesn't do anything yet) -->
+      <button type="button" id="petBtn"
+              class="btn rounded-circle border border-2 p-1 d-flex align-items-center justify-content-center overflow-hidden"
+              aria-label="Pet" style="width: 48px; height: 48px;">
+        <!-- PASTE YOUR IMAGE PATH IN src BELOW -->
+        <img src="/images/pet.png" alt="Pet" class="w-100 h-100 object-fit-contain">
+      </button>
+    </div>
+
+    <!-- Streaks box -->
+    <div class="bg-secondary-subtle rounded-3 p-3 mb-5" style="min-height: 10rem;">
+      <div>Streaks</div>
+      <div class="mt-2">
+        <div>Activity 1: xxx</div>
+        <div>Activity 2: xxx</div>
+        <div>Activity 3: xxx</div>
+      </div>
+    </div>
+
+    <!-- Activities box -->
+    <div class="bg-secondary-subtle rounded-3 p-3" style="min-height: 18rem;">
+      <div class="d-flex justify-content-between align-items-start">
+        <h2 class="h4 fw-bold mb-0">Activities</h2>
+
+        <!-- Expand / widen button (placeholder, doesn't do anything yet) -->
+        <button type="button" id="expandActivitiesBtn" class="btn btn-link text-body p-0 d-flex"
+                aria-label="Expand activities" style="width: 32px; height: 32px;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+               stroke-width="2.2" stroke-linecap="square" class="w-100 h-100" aria-hidden="true">
+            <path d="M10 2.5h3.5V6"/>
+            <path d="M6 13.5H2.5V10"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Activity content goes here -->
+    </div>
+
+  </div>
+
+      <!---------------------------------------------->
+      <!-- Your own JavaScript functions go here    -->
+      <!---------------------------------------------->
+
+      <!-- Global scripts: Bootstrap + styles -->
+      <script type="module" src="/src/app.js"></script>
+
+      <!-- This page requires login: greets the user, or redirects to index.html if logged out -->
+      <script type="module" src="/src/main.js"></script>
+
+</body>
+
+</html>
