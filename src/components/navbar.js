@@ -16,8 +16,8 @@ class SiteNavbar extends HTMLElement {
         const isActive = (file) => (path.endsWith(file) ? 'active' : '');
 
         this.innerHTML = `
-                  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <nav class="navbar fixed-bottom navbar-light bg-light">
+                  <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="top-level">
+            <nav class="navbar fixed-bottom navbar-light bg-light" aria-label="mid-level">
           <a class="navbar-brand" href="#"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -31,11 +31,12 @@ class SiteNavbar extends HTMLElement {
                 <li class="nav-item">
                   <a class="nav-link" href="#"><img src="images/shopping-basket.png" alt=""></a>
                 </li>
+                <li>
                 <div class="dropup">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="images/Minimalist_info_Icon.png" alt="">
                   </button>
-                <div class="dropdown-menu" aria-labelledby="triggerId">
+                <div class="dropdown-menu">
                   <a class="dropdown-item" href="#">Action</a>
                   <a class="dropdown-item" href="#">Action</a>
                 </div>
