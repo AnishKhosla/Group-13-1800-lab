@@ -1,6 +1,15 @@
 // main.js: ONLY loaded by main.html (the logged-in page).
 // Bootstrap + global styles come from app.js, which every page loads.
 import { onAuthReady } from "/src/authentication.js";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
+
+
+import '../styles/style.css';
+
+function sayHello() {
+    console.log("Main.js loaded!")
+}
 
 function showName() {
     // Pass a CALLBACK function to run when Firebase finishes checking login status
@@ -18,3 +27,4 @@ function showName() {
 }
 
 showName();
+document.addEventListener('DOMContentLoaded', sayHello);

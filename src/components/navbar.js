@@ -16,37 +16,39 @@ class SiteNavbar extends HTMLElement {
         const isActive = (file) => (path.endsWith(file) ? 'active' : '');
 
         this.innerHTML = `
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.html" data-home>REHABO</a>
+                  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar fixed-bottom navbar-light bg-light">
+          <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <button class="navbar-toggler" type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link ${isActive('main.html')}" href="index.html" data-home>Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pets</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link ${isActive('info.html')}" href="info.html">Info</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Settings</a>
-                        </li>
-                    </ul>
-
-                    <!-- Login / Logout button gets placed here -->
-                    <div id="authControls" class="d-flex"></div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#"><img src="images/image.png" alt=""></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"><img src="images/shopping-basket.png" alt=""></a>
+                </li>
+                <div class="dropup">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="images/Minimalist_info_Icon.png" alt="">
+                  </button>
+                <div class="dropdown-menu" aria-labelledby="triggerId">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Action</a>
                 </div>
+                </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#"><img src="images/4989372.png" alt=""></a>
+                </li>
+              </ul>
             </div>
-        </nav>
+            <a class="navbar-brand" href="#"><img src="images/6522516.png" alt=""></a>
+          </nav>
+          </nav>
         `;
     }
 
