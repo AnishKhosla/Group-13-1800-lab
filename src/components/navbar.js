@@ -7,7 +7,7 @@ class SiteNavbar extends HTMLElement {
     // (Safer than the constructor, which shouldn't touch the element's children.)
     connectedCallback() {
         this.renderNavbar();
-        this.renderAuthControls(); // Adds either a Log in or Log out button, depending on login status
+        this.renderAuthControls();
     }
 
     renderNavbar() {
@@ -26,10 +26,10 @@ class SiteNavbar extends HTMLElement {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#"><img src="images/image.png" alt=""></a>
+                  <a class="nav-link" href="index.html" data-home><img src="images/image.png" alt="Home"></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"><img src="images/shopping-basket.png" alt=""></a>
+                  <a class="nav-link" href="#"><img src="images/shopping-basket.png" alt="Market"></a>
                 </li>
                 <li>
                 <div class="dropup">
@@ -47,7 +47,11 @@ class SiteNavbar extends HTMLElement {
                 </li>
               </ul>
             </div>
+            <div id="authControls" class="auth-controls d-flex align-items-center gap-2 my-2 my-lg-0">
+            <!-- populated by JS -->
+            </div>
             <a class="navbar-brand" href="#"><img src="images/6522516.png" alt=""></a>
+            
           </nav>
           </nav>
         `;
