@@ -26,7 +26,7 @@ class SiteNavbar extends HTMLElement {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="index.html" data-home><img src="images/image.png" alt="Home"></a>
+                  <a class="nav-link" href="#" data-home><img src="images/image.png" alt="Home"></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#"><img src="images/shopping-basket.png" alt="Market"></a>
