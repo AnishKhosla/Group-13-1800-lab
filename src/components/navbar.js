@@ -37,8 +37,8 @@ class SiteNavbar extends HTMLElement {
                     <img src="images/Minimalist_info_Icon.png" alt="">
                   </button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item ${isActive('info.html')}" href="info.html">Info</a>
+                  <a class="dropdown-item ${isActive('articles.html')}" href="articles.html">Articles</a>
                 </div>
                 </div>
                 </li>

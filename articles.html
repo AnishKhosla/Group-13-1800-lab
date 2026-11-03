@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Rehabo: Articles</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Other libraries go here -->
+    <script type="module" src="src/components/navbar.js"></script>
+</head>
+
+<body>
+
+    <site-navbar></site-navbar>
+
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+    <div class="container py-4" style="max-width: 720px;">
+
+        <h1 class="h2 fw-bold text-center mb-2">Articles</h1>
+        <p class="text-center mb-4">Trusted guides on quitting an addiction and finding support. Each link opens in a new tab.</p>
+
+        <div class="list-group gap-3">
+
+            <!-- Article 1 -->
+            <a href="https://www.canada.ca/en/health-canada/services/substance-use/get-help-with-substance-use.html"
+               class="list-group-item list-group-item-action rounded-3 border p-3"
+               target="_blank" rel="noopener noreferrer">
+                <h2 class="h5 fw-bold mb-1">Get help with substance use</h2>
+                <p class="mb-1">Government of Canada resources for finding treatment, support services, and help lines.</p>
+                <small class="text-body-secondary">Health Canada (canada.ca)</small>
+            </a>
+
+            <!-- Article 2 -->
+            <a href="https://www.health.harvard.edu/diseases-and-conditions/five-action-steps-for-quitting-an-addiction"
+               class="list-group-item list-group-item-action rounded-3 border p-3"
+               target="_blank" rel="noopener noreferrer">
+                <h2 class="h5 fw-bold mb-1">Five action steps for quitting an addiction</h2>
+                <p class="mb-1">Practical steps you can start taking right away to move toward quitting.</p>
+                <small class="text-body-secondary">Harvard Health Publishing (health.harvard.edu)</small>
+            </a>
+
+            <!-- Article 3 -->
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5836519/"
+               class="list-group-item list-group-item-action rounded-3 border p-3"
+               target="_blank" rel="noopener noreferrer">
+                <h2 class="h5 fw-bold mb-1">Research article on addiction recovery</h2>
+                <p class="mb-1">A peer-reviewed article for readers who want a deeper, research-based look.</p>
+                <small class="text-body-secondary">National Library of Medicine (pmc.ncbi.nlm.nih.gov)</small>
+            </a>
+
+        </div>
+
+        <!-- Link back to the crisis numbers and the in-app article -->
+        <div class="mt-4 text-center">
+            <p class="mb-1">In a crisis? If someone is in immediate danger, call 9-1-1. For suicide support, call 9-8-8.</p>
+            <a href="info.html" class="btn btn-outline-secondary btn-sm">More help and info</a>
+        </div>
+
+    </div>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <script type="module" src="/src/app.js"></script>
+
+</body>
+
+</html>
