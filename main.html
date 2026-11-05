@@ -16,7 +16,6 @@
 <body>
 
   <site-navbar></site-navbar>>
-
   <div class="container py-3" style="max-width: 600px;">
 
     <!-- Top row: settings (left) | title (center) | pet (right) -->
@@ -47,7 +46,7 @@
     <div class="bg-secondary-subtle rounded-3 p-3 mb-5" style="min-height: 10rem;">
       <div>Streaks</div>
       <div class="mt-2">
-        <div>Activity 1: xxx</div>
+        <div id="geoloc">Latitude: <br>Longitude: </div>
         <div>Activity 2: xxx</div>
         <div>Activity 3: xxx</div>
       </div>
@@ -83,6 +82,9 @@
 
       <!-- This page requires login: greets the user, or redirects to index.html if logged out -->
       <script type="module" src="/src/main.js"></script>
+
+      <!--Testing if geolocation works on localhost-->
+      <script type="module" src="/src/geo.js"></script>
 
 </body>
 
