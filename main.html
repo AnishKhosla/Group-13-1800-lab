@@ -44,9 +44,9 @@
 
     <!-- Streaks box -->
     <div class="bg-secondary-subtle rounded-3 p-3 mb-5" style="min-height: 10rem;">
-      <div>Streaks</div>
+      <div>Streak: <span id="streakScore">0</span> days</div>
       <div class="mt-2">
-        <div id="geoloc">Latitude: <br>Longitude: </div>
+        <div id="geoloc">Latitide: <br>Longitude: </div>
         <div>Activity 2: xxx</div>
         <div>Activity 3: xxx</div>
       </div>
@@ -83,9 +83,9 @@
       <!-- This page requires login: greets the user, or redirects to index.html if logged out -->
       <script type="module" src="/src/main.js"></script>
 
-      <!--Testing if geolocation works on localhost-->
+      <!--Geolocation script, replaces element with id "geoloc" with the user's latitude and longitude.
+      If there is an element with id "getGeolocButton", instead replaces the "geoloc" element when the "getGeolocButton" element is clicked-->
       <script type="module" src="/src/geo.js"></script>
-
 </body>
 
 </html>

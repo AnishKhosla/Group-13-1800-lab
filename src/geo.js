@@ -1,36 +1,42 @@
 console.log("geo.js loaded");
-const x = document.getElementById("geoloc");
+const geolocReplaced = document.getElementById("geoloc");
+const geolocAskButton = document.getElementById("getGeolocButton");
 
-// document.getElementById("getGeolocationButton").addEventListener("click",getLocation());
-getLocation();
+if (geolocAskButton!= null) {
+    geolocAskButton.addEventListener("click",getLocation());
+} else {
+    getLocation();
+}
+
+
 
 function getLocation() {
   if (navigator.geolocation) {
     console.log("geoloc working...");
     navigator.geolocation.getCurrentPosition(showPosition);
   } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    geolocReplaced.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
 function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude +
+  geolocReplaced.innerHTML = "Latitude: " + position.coords.latitude +
   "<br>Longitude: " + position.coords.longitude;
   console.log("geoloc loaded");
 }
 function showError(error) {
   switch(error.code) {
     case error.PERMISSION_DENIED:
-      x.innerHTML = "User denied the request for Geolocation."
+      geolocReplaced.innerHTML = "User denied the request for Geolocation."
       break;
     case error.POSITION_UNAVAILABLE:
-      x.innerHTML = "Location information is unavailable."
+      geolocReplaced.innerHTML = "Location information is unavailable."
       break;
     case error.TIMEOUT:
-      x.innerHTML = "The request to get user location timed out."
+      geolocReplaced.innerHTML = "The request to get user location timed out."
       break;
     case error.UNKNOWN_ERROR:
-      x.innerHTML = "An unknown error occurred."
+      geolocReplaced.innerHTML = "An unknown error occurred."
       break;
   }
 } 
