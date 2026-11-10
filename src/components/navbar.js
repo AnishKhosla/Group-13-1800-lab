@@ -19,12 +19,12 @@ class SiteNavbar extends HTMLElement {
                   <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="top-level">
             <nav class="navbar fixed-bottom navbar-light bg-light" aria-label="mid-level">
           <a class="navbar-brand" href="#"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
+            <div class="collapse navbar-collapse order-first order-lg-0" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto flex-row justify-content-around align-items-center">
                 <li class="nav-item active">
                   <a class="nav-link" href="#" data-home><img src="images/image.png" alt="Home"></a>
                 </li>
@@ -36,7 +36,7 @@ class SiteNavbar extends HTMLElement {
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="images/Minimalist_info_Icon.png" alt="">
                   </button>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu position-absolute">
                   <a class="dropdown-item ${isActive('info.html')}" href="info.html">Info</a>
                   <a class="dropdown-item ${isActive('articles.html')}" href="articles.html">Articles</a>
                 </div>
@@ -50,7 +50,7 @@ class SiteNavbar extends HTMLElement {
             <div id="authControls" class="auth-controls d-flex align-items-center gap-2 my-2 my-lg-0">
             <!-- populated by JS -->
             </div>
-            <a class="navbar-brand" href="profile.html"><img src="images/6522516.png" alt=""></a>
+            <a class="navbar-brand" href="#"><img src="images/6522516.png" alt=""></a>
             
           </nav>
           </nav>
