@@ -45,7 +45,7 @@
 
     <!-- Streaks box -->
     <div class="bg-secondary-subtle rounded-3 p-3 mb-5" style="min-height: 10rem;">
-      <div>Streak: <span id="streakScore">0</span> days</div>
+      <div>Streak: <span id="streak-count">0</span> days</div>
       <div class="mt-2">
         <div id="geoloc">Latitide: <br>Longitude: </div>
         <div>Activity 2: xxx</div>
@@ -79,6 +79,7 @@
 
       <!-- Global scripts: Bootstrap + styles -->
       <script type="module" src="/src/app.js"></script>
+      <script type="module" src="/src/streaks.js"></script>
 
       <!-- This page requires login: greets the user, or redirects to index.html if logged out -->
       <script type="module" src="/src/main.js"></script>
