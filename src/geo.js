@@ -2,10 +2,18 @@ console.log("geo.js loaded");
 const geolocReplaced = document.getElementById("geoloc");
 const geolocAskButton = document.getElementById("getGeolocButton");
 
-if (geolocAskButton!= null) {
-    geolocAskButton.addEventListener("click",getLocation());
-} else {
+// The Settings page saves the "Location Tracking" switch as "on" / "off" in localStorage.
+// Only ask the browser for the location when the user has turned tracking on.
+const trackingOn = localStorage.getItem("locationTracking") === "on";
+
+if (geolocReplaced) { // pages without a #geoloc element do nothing
+  if (!trackingOn) {
+    geolocReplaced.innerHTML = 'Location tracking is off. You can turn it on in <a href="settings.html">Settings</a>.';
+  } else if (geolocAskButton != null) {
+    geolocAskButton.addEventListener("click", getLocation);
+  } else {
     getLocation();
+  }
 }
 
 
@@ -13,7 +21,7 @@ if (geolocAskButton!= null) {
 function getLocation() {
   if (navigator.geolocation) {
     console.log("geoloc loading...");
-    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
   } else {
     geolocReplaced.innerHTML = "Geolocation is not supported by this browser.";
   }
@@ -39,4 +47,4 @@ function showError(error) {
       geolocReplaced.innerHTML = "An unknown error occurred."
       break;
   }
-} 
+}

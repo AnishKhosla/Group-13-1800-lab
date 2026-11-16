@@ -1,5 +1,6 @@
 
 import { Modal } from 'bootstrap';
+import { setActiveActivities } from '/src/users.js';
 
 const STORAGE_KEY = 'rehaboTasks';
 
@@ -39,6 +40,14 @@ function saveTasks() {
     } catch (err) {
         console.warn('Could not save tasks:', err);
     }
+    syncActivityCount();
+}
+
+// Tells Firestore how many activities (unfinished tasks) this user is working on,
+// so people who follow them can see the number on following.html.
+function syncActivityCount() {
+    const count = tasks.filter((t) => !t.done).length;
+    setActiveActivities(count).catch((err) => console.warn('Could not sync activity count:', err));
 }
 
 
@@ -294,4 +303,5 @@ document.getElementById('addTaskBtn').addEventListener('click', () => openForm()
 modalEl.addEventListener('shown.bs.modal', () => titleInput.focus());
 
 renderTasks();
+syncActivityCount(); // also publish the count for tasks that already existed
 setInterval(updateTimes, 10000);

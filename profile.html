@@ -37,7 +37,8 @@
         <div class="profile-cover__info">
                 <ul class="nav">
                     <li class="mr-2"><strong id="streak-count">00</strong> Streak </li>
-                    <li class="mr-2"><strong>00</strong> Friends</li>
+                    <li class="me-3"><a href="following.html" class="text-decoration-none text-body"><strong id="following-count">00</strong> Following</a></li>
+                    <li class="mr-2"><strong id="followers-count">00</strong> Followers</li>
                 </ul>
             </div>
     </div>
@@ -48,6 +49,17 @@
       <div class="mt-2">
         <div id="streak-range">0 / 100</div>
       </div>
+    </div>
+</div>
+<div class="container py-3">
+    <div class="bg-secondary-subtle rounded-3 p-3 mb-5" style="min-height: 10rem;">
+        <div class="d-flex justify-content-between align-items-center">
+            <b>Followers</b>
+            <a href="following.html" class="btn btn-sm btn-outline-secondary">Find people to follow</a>
+        </div>
+        <!-- profile.js fills this with the people who follow you -->
+        <ul id="followers-list" class="list-unstyled mt-2 mb-0"></ul>
+        <div id="followers-empty" class="text-muted small mt-2 d-none">Nobody is following you yet.</div>
     </div>
 </div>
 <div class="container py-3">
@@ -65,6 +77,7 @@
         <script type="module" src="src/components/navbar.js"></script>
         <script type="module" src="src/main.js"></script>
         <script type="module" src="src/geo.js"></script>
+        <script type="module" src="/src/profile.js"></script>
 
 </body>
 

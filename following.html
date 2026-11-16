@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Rehabo: Following</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="module" src="src/components/navbar.js"></script>
+</head>
+
+<body>
+
+  <site-navbar></site-navbar>
+
+  <div class="container py-3" style="max-width: 600px; padding-bottom: 100px;">
+
+    <h1 class="h2 fw-bold text-center mb-3">Following</h1>
+
+    <form id="searchForm" class="input-group mb-2" role="search">
+      <input type="search" id="searchInput" class="form-control" placeholder="Search people by name" aria-label="Search people by name" autocomplete="off">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <div id="searchMessage" class="text-muted small mb-2"></div>
+    <div id="searchResults" class="mb-4"></div>
+
+    <h2 class="h4 fw-bold">People you follow <span id="followingCount" class="badge text-bg-secondary">0</span></h2>
+    <div id="followingMessage" class="text-muted small mb-2"></div>
+    <div id="followingList"></div>
+
+  </div>
+
+      <script type="module" src="/src/app.js"></script>
+
+      <script type="module" src="/src/following.js"></script>
+</body>
+
+</html>
+
+<!-- note to self: add a search button in the main page or something for finding other people. -->
