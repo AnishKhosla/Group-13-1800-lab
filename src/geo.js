@@ -12,7 +12,7 @@ if (geolocAskButton!= null) {
 
 function getLocation() {
   if (navigator.geolocation) {
-    console.log("geoloc working...");
+    console.log("geoloc loading...");
     navigator.geolocation.getCurrentPosition(showPosition);
   } else {
     geolocReplaced.innerHTML = "Geolocation is not supported by this browser.";
