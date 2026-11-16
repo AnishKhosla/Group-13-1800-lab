@@ -27,7 +27,7 @@
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="John Doe">
+                                    <input type="text" class="form-control" id="fullName" autocomplete="name">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -35,7 +35,8 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="john@example.com">
+                                    <input type="email" class="form-control" id="email" readonly aria-describedby="emailHelp">
+                                    <div id="emailHelp" class="form-text">This is your login email, so it can't be edited here.</div>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -43,7 +44,7 @@
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="(239) 816-9029">
+                                    <input type="tel" class="form-control" id="phone" autocomplete="tel">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -51,7 +52,7 @@
                                     <h6 class="mb-0">Mobile</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="(320) 380-4539">
+                                    <input type="tel" class="form-control" id="mobile" autocomplete="tel">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -59,7 +60,7 @@
                                     <h6 class="mb-0">Address</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="Bay Area, San Francisco, CA">
+                                    <input type="text" class="form-control" id="address" autocomplete="street-address">
                                 </div>
                             </div>
                             <!-- Location tracking toggle -->
@@ -74,10 +75,23 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Notifications toggle (only saves the preference for now; nothing is sent yet) -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Notifications</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="notificationsToggle">
+                                        <label class="form-check-label" for="notificationsToggle" id="notificationsToggleLabel">Off</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="button" class="btn btn-primary px-4" value="Save Changes">
+                                    <div id="settingsAlert" class="alert d-none" role="alert"></div>
+                                    <input type="button" class="btn btn-primary px-4" id="saveSettingsBtn" value="Save Changes">
                                 </div>
                             </div>
                         </div>
@@ -110,23 +124,8 @@ body{
 </style>
       <script type="module" src="/src/app.js"></script>
 
-<!-- Remembers the location tracking switch in this browser (other pages can read localStorage "locationTracking") -->
-<script>
-    const locationToggle = document.getElementById("locationToggle");
-    const locationLabel = document.getElementById("locationToggleLabel");
-
-    function showLocationState() {
-        locationLabel.textContent = locationToggle.checked ? "On" : "Off";
-    }
-
-    locationToggle.checked = localStorage.getItem("locationTracking") === "on";
-    showLocationState();
-
-    locationToggle.addEventListener("change", function () {
-        localStorage.setItem("locationTracking", locationToggle.checked ? "on" : "off");
-        showLocationState();
-    });
-</script>
+<!-- Loads / saves the settings (name, phone, address, location tracking, notifications) -->
+<script type="module" src="/src/settings.js"></script>
 
 </body>
 

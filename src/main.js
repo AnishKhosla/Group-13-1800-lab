@@ -1,6 +1,7 @@
 // main.js: ONLY loaded by main.html (the logged-in page).
 // Bootstrap + global styles come from app.js, which every page loads.
 import { onAuthReady } from "/src/authentication.js";
+import { saveUserProfile } from "/src/users.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 
@@ -19,6 +20,10 @@ function showName() {
             const name = user.displayName || user.email; // Use email if name is missing
             const nameEl = document.getElementById("name-goes-here");
             if (nameEl) nameEl.textContent = name + "!";
+
+            // Save the name publicly so other users can find this person in the search box
+            // (also backfills accounts that were created before the search existed).
+            saveUserProfile(user).catch((err) => console.error("Could not save user profile:", err));
         } else {
             // User is NOT logged in, so send them to the welcome page
             location.href = "index.html";
