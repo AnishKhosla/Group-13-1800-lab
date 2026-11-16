@@ -50,7 +50,7 @@ class SiteNavbar extends HTMLElement {
             <div id="authControls" class="auth-controls d-flex align-items-center gap-2 my-2 my-lg-0">
             <!-- populated by JS -->
             </div>
-            <a class="navbar-brand" href="#"><img src="images/6522516.png" alt=""></a>
+            <a class="navbar-brand" href="profile.html"><img src="images/6522516.png" alt=""></a>
             
           </nav>
           </nav>
