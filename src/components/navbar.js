@@ -29,7 +29,7 @@ class SiteNavbar extends HTMLElement {
                   <a class="nav-link" href="#" data-home><img src="images/image.png" alt="Home"></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"><img src="images/shopping-basket.png" alt="Market"></a>
+                  <a class="nav-link" href="store.html"><img src="images/shopping-basket.png" alt="Market"></a>
                 </li>
                 <li>
                 <div class="dropup">
