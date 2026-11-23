@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Rehabo: Main Menu</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Other libraries go here -->
+    <script type="module" src="src/components/navbar.js"></script>
+    <link rel="stylesheet" href="styles/pet.css">
+</head>
+
+<body>
+
+  <site-navbar></site-navbar>
+  <main class="pet-page">
+
+    <a href="pets.html" class="back" aria-label="Back to home">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none"
+           stroke="currentColor" stroke-width="2.2"
+           stroke-linecap="square" aria-hidden="true">
+        <path d="M21 12H4" />
+        <path d="M11 5l-7 7 7 7" />
+      </svg>
+    </a>
+
+    <img src="images/charmander.png" alt="Your pet" class="pet-img" data-pet-image>
+    <p class="pet-name" data-pet-name>Pet-name</p>
+
+  </main>
+
+      <!------------------------------>
+      <!-- Your HTML Layout go here -->
+      <!------------------------------>
+      <!-- Stuff for body goes here -->
+
+
+      <!---------------------------------------------->
+      <!-- Your own JavaScript functions go here    -->
+      <!---------------------------------------------->
+
+      <!-- Link to scripts of your own -->
+      <script type="module" src="/src/app.js"></script>
+      <script type="module" src="/src/pet.js"></script>
+
+</body>
+
+</html>

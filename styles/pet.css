@@ -1,0 +1,42 @@
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #f4f5f4;
+    }
+    .pet-page {
+      position: relative;
+      min-height: 100dvh;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .back {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      color: #111;
+      text-decoration: none;
+    }
+    .back:hover { background: #e7e8e7; color: #111; }
+    .back:focus-visible { outline: 2px solid #111; outline-offset: 2px; }
+    .pet-img {
+      display: block;
+      width: min(55vw, 260px);
+      height: auto;
+    }
+
+    .pet-name {
+      margin: 1rem 0 0;
+      font-size: 1.15rem;
+      color: #555;
+    }
