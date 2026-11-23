@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Rehabo: Main Menu</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Other libraries go here -->
+    <script type="module" src="src/components/navbar.js"></script>
+    <link rel="stylesheet" href="styles/pets.css">
+</head>
+
+<body>
+
+  <site-navbar></site-navbar>
+
+
+      <!------------------------------>
+      <!-- Your HTML Layout go here -->
+      <!------------------------------>
+      <!-- Stuff for body goes here -->
+    <main class="page">
+
+    <a href="main.html" class="back" aria-label="Back to pet">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none"
+           stroke="currentColor" stroke-width="2.2"
+           stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+        <path d="M21 12H4" />
+        <path d="M11 5l-7 7 7 7" />
+      </svg>
+    </a>
+
+    <div class="search">
+      <label for="petSearch" class="visually-hidden">Search pets</label>
+      <input id="petSearch" type="search" placeholder="Search..." autocomplete="off">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="10.5" cy="10.5" r="6.5" />
+        <path d="M15.5 15.5L21 21" />
+      </svg>
+    </div>
+
+    <ul class="pet-grid" id="petGrid">
+      <li><button type="button" class="pet-tile" data-name="Pet 1" data-desc="Needs a description." aria-label="Pet 1"><img src="images/charmander.png" alt=""></button></li>
+      <li><button type="button" class="pet-tile" data-name="Pet 2" data-desc="Needs a description." aria-label="Pet 2"></button></li>
+      <li><button type="button" class="pet-tile" data-name="Pet 3" data-desc="Needs a description." aria-label="Pet 3"></button></li>
+      <li><button type="button" class="pet-tile" data-name="Pet 4" data-desc="Needs a description." aria-label="Pet 4"></button></li>
+      <li><button type="button" class="pet-tile" data-name="Pet 5" data-desc="Needs a description." aria-label="Pet 5"></button></li>
+      <li><button type="button" class="pet-tile" data-name="Pet 6" data-desc="Needs a description." aria-label="Pet 6"></button></li>
+      <li><button type="button" class="pet-tile" data-name="Pet 7" data-desc="Needs a description." aria-label="Pet 7"></button></li>
+      <li><button type="button" class="pet-tile" data-name="Pet 8" data-desc="Needs a description." aria-label="Pet 8"></button></li>
+      <li><button type="button" class="pet-tile" data-name="Pet 9" data-desc="Needs a description." aria-label="Pet 9"></button></li>
+    </ul>
+
+    <section class="desc" aria-live="polite">
+      <div class="desc-inner">
+        <span class="desc-title" id="descTitle">Description Box...</span>
+        <p class="desc-body" id="descBody"></p>
+        <button type="button" class="desc-expand" id="descExpand" aria-label="Expand description">
+          <a href="pet.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.2" stroke-linecap="square" aria-hidden="true">
+            <path d="M14 4h6v6" />
+            <path d="M20 4l-6 6" />
+            <path d="M10 20H4v-6" />
+            <path d="M4 20l6-6" />
+          </svg></a>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+      <!---------------------------------------------->
+      <!-- Your own JavaScript functions go here    -->
+      <!---------------------------------------------->
+
+      <!-- Link to scripts of your own -->
+      <script type="module" src="/src/app.js"></script>
+      <script type="module" src="/src/pets.js"></script>
+
+</body>
+
+</html>
