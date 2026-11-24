@@ -26,11 +26,10 @@ if (geolocReplaced) { // pages without a #geoloc element do nothing
     geolocReplaced.innerHTML = 'Location tracking is off. You can turn it on in <a href="settings.html">Settings</a>.';
   } else if (geolocAskButton) {
     geolocAskButton.addEventListener("click", getLocation);
+  } else if (geolocSetHome) {
+    geolocSetHome.addEventListener("click", setHome);
   } else {
     getLocation();
-  }
-  if (trackingOn && geolocSetHome) {
-    geolocSetHome.addEventListener("click", setHome);
   }
 }
 
@@ -69,29 +68,36 @@ function showError(error) {
 
 async function setHome() {
   console.log("Setting Home");
-  setLocation();
-}
-
-/*These functions are seperate because they're entirely for the purpose of returning the values instead of displaying them*/ 
-
-export async function setLocation() {
   if (navigator.geolocation) {
     console.log("geoloc loading...");
-    navigator.geolocation.getCurrentPosition(returnPosition,returnError);
+    navigator.geolocation.getCurrentPosition(setLocation,returnError);
   } else {
     alert("Geolocation is not supported by this browser");
     return null;
   }
 }
 
-async function returnPosition(position) {
-  /* returns a 2-item object where "longitude" is the longitude and "latitude" is the latitude. */
+/*These functions are seperate because they're entirely for the purpose of returning the values instead of displaying them*/ 
+
+export async function setLocation() {
   location.longitude = position.coords.longitude,
   location.latitude = position.coords.latitude;
   setDoc(doc(db, 'users', currentUser.uid), 
-    {"longitude": location["longitude"],
-    "latitude": location["latitude"]}, {merge: true});
+  {"longitude": location["longitude"],
+  "latitude": location["latitude"]}, {merge: true});
   console.log("Location recorded")
+}
+
+export async function returnPosition() {
+  /* sets the global object 'location's values to the longitude and latitude of the current location */
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function () {
+    location.longitude = position.coords.longitude;
+    location.latitude = position.coords.latitude;
+    },returnError)
+  } else {
+    alert("Geolocation is not supported by this browser")
+  }
 }
 
 function returnError(error) {
