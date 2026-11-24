@@ -2,3 +2,107 @@ img{
     padding: 0;
     margin: 0;
 }
+
+
+:root {
+  --pop-ink:      #16172b;
+  --pop-violet:   #6c4cf1;
+  --pop-coral:    #ff5c39;
+  --pop-mango:    #ffc23d;
+  --pop-mint:     #2ec4a6;
+
+  --bs-primary: var(--pop-violet);
+  --bs-primary-rgb: 108, 76, 241;
+
+  --bs-link-color: var(--pop-violet);
+  --bs-link-color-rgb: 108, 76, 241;
+  --bs-link-hover-color: #5433d6;
+
+  --bs-body-color: var(--pop-ink);
+  --bs-body-bg: #fffaf5;
+  --bs-heading-color: var(--pop-ink);
+  --bs-secondary-color: #6b6b7b;        
+
+  --bs-border-color: #ffd8c9;           
+  --bs-focus-ring-color: rgba(108, 76, 241, .35);
+
+
+  --bs-secondary-bg-subtle: #f4f0ff;
+  --bs-secondary-border-subtle: #e3d9ff;
+
+  --bs-light-rgb: 255, 255, 255;
+
+  --bs-border-radius:      .95rem;
+  --bs-border-radius-sm:   .7rem;
+  --bs-border-radius-lg:   1.3rem;
+  --bs-border-radius-xl:   1.7rem;
+  --bs-border-radius-xxl:  2rem;
+}
+
+body {
+  background:
+    radial-gradient(120% 90% at 100% 0%,   #fff0e6 0%, rgba(255,240,230,0) 55%),
+    radial-gradient(110% 85% at 0% 100%,  #efe9ff 0%, rgba(239,233,255,0) 60%),
+    #fffaf5;
+  background-attachment: fixed;
+  min-height: 100vh;
+  font-weight: 500;                       
+}
+
+
+.btn-primary {
+  --bs-btn-bg: var(--pop-violet);
+  --bs-btn-border-color: var(--pop-violet);
+  --bs-btn-hover-bg: #5b3ce0;
+  --bs-btn-hover-border-color: #5b3ce0;
+  --bs-btn-active-bg: #4b2ec9;
+  --bs-btn-active-border-color: #4b2ec9;
+  --bs-btn-disabled-bg: var(--pop-violet);
+  --bs-btn-disabled-border-color: var(--pop-violet);
+  box-shadow: 0 8px 18px rgba(108, 76, 241, .28);
+}
+
+.btn-secondary {
+  --bs-btn-bg: #fff;
+  --bs-btn-color: var(--pop-ink);
+  --bs-btn-border-color: var(--bs-secondary-border-subtle);
+  --bs-btn-hover-bg: #f5f1ff;
+  --bs-btn-hover-border-color: #d8ccff;
+  --bs-btn-hover-color: var(--pop-ink);
+  --bs-btn-active-bg: #efe8ff;
+  --bs-btn-active-border-color: #d8ccff;
+  --bs-btn-active-color: var(--pop-ink);
+}
+
+.btn-outline-primary,
+.btn-outline-secondary {
+  --bs-btn-color: var(--pop-violet);
+  --bs-btn-border-color: var(--pop-violet);
+  --bs-btn-hover-bg: var(--pop-violet);
+  --bs-btn-hover-border-color: var(--pop-violet);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: #4b2ec9;
+  --bs-btn-active-border-color: #4b2ec9;
+  --bs-btn-active-color: #fff;
+}
+
+.btn {
+  --bs-btn-font-weight: 700;
+  --bs-btn-border-radius: 999px;
+}
+
+.bg-secondary-subtle {
+  border: 1px solid var(--bs-secondary-border-subtle);
+  box-shadow: 0 10px 26px rgba(22, 23, 43, .06);
+}
+
+site-navbar .fixed-bottom {
+  box-shadow: 0 -6px 22px rgba(22, 23, 43, .10);
+}
+
+h1, h2, h3, h4, h5, h1.h2, h2.h4 {
+  letter-spacing: -.015em;
+}
+h1, .display-5 {
+  color: var(--pop-ink);
+}
