@@ -85,7 +85,7 @@ export async function setLocation() {
   setDoc(doc(db, 'users', currentUser.uid), 
   {"longitude": location["longitude"],
   "latitude": location["latitude"]}, {merge: true});
-  console.log("Location recorded")
+  console.log("Location recorded");
 }
 
 export async function returnPosition() {
@@ -94,9 +94,9 @@ export async function returnPosition() {
     navigator.geolocation.getCurrentPosition(function () {
     location.longitude = position.coords.longitude;
     location.latitude = position.coords.latitude;
-    },returnError)
+    },returnError);
   } else {
-    alert("Geolocation is not supported by this browser")
+    alert("Geolocation is not supported by this browser");
   }
 }
 

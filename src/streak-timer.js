@@ -5,8 +5,8 @@ import { onAuthReady } from '/src/authentication.js';
 
 const startStreak = document.getElementById('startStreak');
 startStreak.addEventListener('click', startTime);
-const addStreak = document.getElementById("addStreak")
-addStreak.addEventListener('click', incrementStreak)
+const addStreak = document.getElementById("addStreak");
+addStreak.addEventListener('click', incrementStreak);
 const trackingOn = localStorage.getItem('locationTracking') === 'on';
 const location = {"longitude":null, "latitude":null};
 
@@ -44,13 +44,13 @@ async function incrementStreak () {
     let oldTime = new Date(localStorage.getItem("time"));
     let newTime = new Date();
 
-    let timeDiff = Math.abs( (oldTime.getHours() + oldTime.getMinutes() / 60) - (newTime.getHours() + newTime.getMinutes() / 60));
-    // this whole line above sets timeDiff to the absolute difference between the old time and the new time. Absolute because if you started your timer after the 22nd hour, you would never be able to cash in the timer. This does mean that if you press the button at 23:59, you will be able to cash in the timer
+    let timeDiff = Math.abs((oldTime.getHours() + oldTime.getMinutes() / 60) - (newTime.getHours() + newTime.getMinutes() / 60));
+    // this whole line above sets timeDiff to the absolute difference between the old time and the new time. Absolute because if you started your timer after the 22nd hour, you would never be able to cash in the timer. This does mean that if you press the button at 23:59, you will be able to cash in the timer in one minute, but that's better than never being able to until you restart the timer at a different point.
 
     if (checkDistance() && (timeDiff >= 2 ||  newTime.getDay !== oldTime.getDay)) { 
     // if far enough away AND (more than two hours since timer started OR it's a different day)
-      setDoc(doc(db, "users", currentUser.uid,), {"streakCount": increment(1)},{merge: true})
-      localStorage.removeItem('time')
+      setDoc(doc(db, "users", currentUser.uid,), {"streakCount": increment(1)},{merge: true});
+      localStorage.removeItem('time');
       } else {
         alert("You are either too close to your home location, or it hasn't been long enough!");
       }
@@ -60,16 +60,16 @@ async function incrementStreak () {
 }
 
 async function checkDistance () { // this needs to be changed, this was just a placeholder that was eventually shifted to geo.js
-  await returnPosition()
-  let curLat = location.latitude
-  let curLon = location.longitude
+  await returnPosition();
+  let curLat = location.latitude;
+  let curLon = location.longitude;
   let homeLat = await getDoc(collection(db, "users", currentUser.uid, "latitude"));
   let homeLon = await getDoc(collection(db, "users", currentUser.uid, "longitude"));
-  let mDist = getDistanceFromLatLonInKm(curLat,curLon,homeLat,homeLon) * 1000
+  let mDist = getDistanceFromLatLonInKm(curLat,curLon,homeLat,homeLon) * 1000;
   if (mDist >= 200) {
-    return true
+    return true;
   } else {
-    return false
+    return false;
   }
 }
 
