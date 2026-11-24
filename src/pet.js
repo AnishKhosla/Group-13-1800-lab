@@ -1,13 +1,14 @@
 import { onAuthReady } from "/src/authentication.js";
 import { db } from "/src/firebaseConfig.js";
 import { doc, onSnapshot } from "firebase/firestore";
+import { applyCosmetics } from "/src/petAvatar.js";
 
 
 export const PET_STAGES = [
-  { at: 0,   image: "images/charmander.png", name: "Hatchling" },
-  { at: 10,  image: "images/charmeleon.png", name: "Sprout"   },
-  { at: 50,  image: "images/charizard.png", name: "Stalwart" },
-  { at: 100, image: "images/charizard-gigantamax.png", name: "Radiant"  },
+  { at: 0,   image: "images/charmander.png", name: "Hatchling", hatTop: 13 },
+  { at: 10,  image: "images/charmeleon.png", name: "Sprout",    hatTop: 4  },
+  { at: 50,  image: "images/charizard.png", name: "Stalwart",  hatTop: 15 },
+  { at: 100, image: "images/charizard-gigantamax.png", name: "Radiant", hatTop: 0 },
 ];
 
 export function stageFor(count = 0) {
@@ -35,6 +36,11 @@ export function showPet() {
         document.querySelectorAll("[data-pet-image]").forEach((img) => {
           img.src = stage.image;
           img.alt = stage.name;
+        });
+        // Background + hat the user has equipped (bought in the store, equipped in the inventory)
+        const equipped = snap.exists() ? (snap.data().equipped ?? {}) : {};
+        document.querySelectorAll("[data-pet-frame]").forEach((frame) => {
+          applyCosmetics(frame, equipped, stage);
         });
         document.querySelectorAll("[data-pet-name]").forEach((el) => {
           el.textContent = stage.name;

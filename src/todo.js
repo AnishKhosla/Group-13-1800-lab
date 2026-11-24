@@ -1,6 +1,7 @@
 
 import { Modal } from 'bootstrap';
-import { setActiveActivities } from '/src/users.js';
+import { setActiveActivities, waitForUser } from '/src/users.js';
+import { addCoins, showToast, COINS_PER_ACTIVITY } from '/src/currency.js';
 
 const STORAGE_KEY = 'rehaboTasks';
 
@@ -23,6 +24,7 @@ function iconSvg(name) {
 let tasks = loadTasks();
 const openTasks = new Set(); // ids of tasks whose details are expanded (kept across re-renders)
 let editingId = null;        // null = the form is adding a new task
+const pendingRewards = new Set(); // ids of tasks whose coins are being saved right now
 
 
 function loadTasks() {
@@ -50,6 +52,30 @@ function syncActivityCount() {
     setActiveActivities(count).catch((err) => console.warn('Could not sync activity count:', err));
 }
 
+
+// Pays COINS_PER_ACTIVITY the first time a task is completed. Un-checking and
+// re-checking a task never pays again (task.rewarded), so coins can't be farmed.
+async function rewardTask(task) {
+    if (task.rewarded || pendingRewards.has(task.id)) return;
+    pendingRewards.add(task.id);
+    try {
+        const user = await waitForUser();
+        if (!user) {
+            showToast('Log in to earn coins.');
+            return;
+        }
+        await addCoins(user.uid, COINS_PER_ACTIVITY);
+        task.rewarded = true;
+        saveTasks();
+        renderTasks();
+        showToast(`+${COINS_PER_ACTIVITY} coins!`);
+    } catch (err) {
+        console.error('Could not add coins:', err);
+        showToast("Couldn't add coins. Un-check and re-check the task to retry.");
+    } finally {
+        pendingRewards.delete(task.id);
+    }
+}
 
 function formatRemaining(task, now) {
     if (task.done) return { text: 'Completed', overdue: false };
@@ -92,12 +118,16 @@ function sortTasks(list) {
     });
 }
 
+function sortCompleted(list) {
+    return list.slice().sort((a, b) => (b.completed || 0) - (a.completed || 0));
+}
+
 function renderTasks() {
     const groupsEl = document.getElementById('taskGroups');
     groupsEl.innerHTML = '';
 
     PRIORITIES.forEach((priority) => {
-        const groupTasks = sortTasks(tasks.filter((t) => t.priority === priority.key));
+        const groupTasks = sortTasks(tasks.filter((t) => t.priority === priority.key && !t.done));
 
         const group = document.createElement('section');
         group.className = `priority-group priority-${priority.key}`;
@@ -124,12 +154,38 @@ function renderTasks() {
         groupsEl.appendChild(group);
     });
 
+    // Completed tasks move out of their priority group into their own section
+    const completedTasks = sortCompleted(tasks.filter((t) => t.done));
+    const completedGroup = document.createElement('section');
+    completedGroup.className = 'priority-group priority-completed';
+
+    const completedHeading = document.createElement('h3');
+    completedHeading.className = 'priority-heading';
+    const completedLabel = document.createElement('span');
+    completedLabel.textContent = 'Completed';
+    const completedCount = document.createElement('span');
+    completedCount.className = 'priority-count';
+    completedCount.textContent = completedTasks.length;
+    completedHeading.append(completedLabel, completedCount);
+    completedGroup.appendChild(completedHeading);
+
+    if (completedTasks.length === 0) {
+        const empty = document.createElement('p');
+        empty.className = 'priority-empty';
+        empty.textContent = `Finish a task to earn ${COINS_PER_ACTIVITY} coins`;
+        completedGroup.appendChild(empty);
+    } else {
+        completedTasks.forEach((task) => completedGroup.appendChild(buildTask(task)));
+    }
+    groupsEl.appendChild(completedGroup);
+
     updateTimes();
 }
 
 function buildTask(task) {
     const item = document.createElement('div');
-    item.className = 'task-item' + (task.done ? ' done' : '');
+    // keeps the task's own priority colour, even in the Completed section
+    item.className = `task-item priority-${task.priority}` + (task.done ? ' done' : '');
 
     const main = document.createElement('div');
     main.className = 'task-main';
@@ -141,6 +197,10 @@ function buildTask(task) {
     check.setAttribute('aria-label', `Mark "${task.title}" as completed`);
     check.addEventListener('change', () => {
         task.done = check.checked;
+        if (task.done) {
+            task.completed = Date.now();
+            rewardTask(task); // coins are paid once per task
+        }
         saveTasks();
         renderTasks();
     });
@@ -204,6 +264,13 @@ function buildTask(task) {
     time.dataset.id = task.id;
 
     item.append(main, time);
+
+    if (task.done && task.rewarded) {
+        const reward = document.createElement('div');
+        reward.className = 'task-reward';
+        reward.textContent = `+${COINS_PER_ACTIVITY} coins earned`;
+        item.appendChild(reward);
+    }
     return item;
 }
 

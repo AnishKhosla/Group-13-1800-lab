@@ -1,10 +1,11 @@
 import { onAuthReady } from "/src/authentication.js";
 import { db } from "/src/firebaseConfig.js";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, runTransaction } from "firebase/firestore";
+import { streakReward, showToast } from "/src/currency.js";
 
 /* TEST SWITCH — set to false to go back to one streak per calendar day */
 const TEST_MODE = true;
-const TEST_STEP_MS = 10_000; 
+const TEST_STEP_MS = 1_000; 
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -31,29 +32,46 @@ export function nextStreak({ streakCount = 0, lastVisit = null }, today) {
 }
 
 
+// Updates the streak AND pays the streak coins in one transaction, so opening the page in
+// two tabs at once can't pay the same day twice. Returns { streakCount, reward }.
 export async function updateStreak(userId) {
   const ref = doc(db, "users", userId);
-  const snap = await getDoc(ref);
-  const current = snap.exists() ? snap.data() : {};
   const today = dateKey();
-  const next = nextStreak(current, today);
 
-  if (next.streakCount !== current.streakCount || next.lastVisit !== current.lastVisit) {
-    await setDoc(ref, next, { merge: true });
-  }
-  return next.streakCount;
+  return runTransaction(db, async (tx) => {
+    const snap = await tx.get(ref);
+    const current = snap.exists() ? snap.data() : {};
+    const next = nextStreak(current, today);
+
+    if (next.streakCount === current.streakCount && next.lastVisit === current.lastVisit) {
+      return { streakCount: next.streakCount, reward: 0 };
+    }
+
+    // Coins are paid for reaching a NEW streak day, not for opening the app again today
+    const reward = current.lastVisit === today ? 0 : streakReward(next.streakCount);
+    tx.set(ref, { ...next, coins: (current.coins ?? 0) + reward }, { merge: true });
+    return { streakCount: next.streakCount, reward };
+  });
 }
 
 
+// TEST_MODE only: adds one streak day (and that day's coins) every TEST_STEP_MS
 async function bumpStreak(userId) {
   const ref = doc(db, "users", userId);
-  const snap = await getDoc(ref);
-  const current = snap.exists() ? snap.data() : {};
-  const streakCount = (current.streakCount ?? 0) + 1;
 
-  
-  await setDoc(ref, { streakCount, lastVisit: dateKey() }, { merge: true });
-  return streakCount;
+  return runTransaction(db, async (tx) => {
+    const snap = await tx.get(ref);
+    const current = snap.exists() ? snap.data() : {};
+    const streakCount = (current.streakCount ?? 0) + 1;
+    const reward = streakReward(streakCount);
+
+    tx.set(
+      ref,
+      { streakCount, lastVisit: dateKey(), coins: (current.coins ?? 0) + reward },
+      { merge: true }
+    );
+    return { streakCount, reward };
+  });
 }
 
 function startTestClock(userId) {
@@ -63,7 +81,7 @@ function startTestClock(userId) {
     if (inFlight) return;          
     inFlight = true;
     try {
-      paintStreak(await bumpStreak(userId));
+      paintStreak((await bumpStreak(userId)).streakCount);
     } catch (err) {
       console.error("Streak tick failed:", err);
     } finally {
@@ -91,7 +109,11 @@ export function showStreak() {
         paintStreak(snap.exists() ? (snap.data().streakCount ?? 0) : 0);
         startTestClock(user.uid);
       } else {
-        paintStreak(await updateStreak(user.uid));
+        const { streakCount, reward } = await updateStreak(user.uid);
+        paintStreak(streakCount);
+        if (reward > 0) {
+          showToast(`Day ${streakCount} streak bonus: +${reward} coin${reward === 1 ? "" : "s"}`);
+        }
       }
     } catch (err) {
       console.error("Streak update failed:", err);

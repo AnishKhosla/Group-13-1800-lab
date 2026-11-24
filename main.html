@@ -37,7 +37,10 @@
       <a href="pets.html" id="petBtn"
         class="btn rounded-circle border border-2 p-1 d-flex align-items-center justify-content-center overflow-hidden"
         aria-label="Pet" style="width: 48px; height: 48px;">
-        <img src="images/4989372.png" alt="Pet" class="w-100 h-100 object-fit-contain" data-pet-image>
+        <!-- pet.js sets the picture and draws the equipped background + hat on the frame -->
+        <div class="pet-avatar rounded-circle w-100 h-100" data-pet-frame>
+          <img src="images/4989372.png" alt="Pet" class="pet-avatar__img" data-pet-image>
+        </div>
       </a>
     </div>
 

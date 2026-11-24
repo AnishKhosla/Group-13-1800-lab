@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Rehabo: Inventory</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Other libraries go here -->
+    <script type="module" src="src/components/navbar.js"></script>
+</head>
+
+<body>
+
+  <site-navbar></site-navbar>
+
+  <div class="container py-3 shop-page" style="max-width: 600px;">
+
+    <!-- Top row: title | coin balance -->
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h1 class="h2 fw-bold mb-0">Inventory</h1>
+      <div class="coin-badge" aria-label="Your coins">
+        <span class="coin-icon" aria-hidden="true"></span>
+        <span data-coin-balance>0</span>
+      </div>
+    </div>
+
+    <!-- Switch between the two pages -->
+    <ul class="nav nav-pills mb-4">
+      <li class="nav-item"><a class="nav-link" href="store.html">Store</a></li>
+      <li class="nav-item"><a class="nav-link active" href="inventory.html">Inventory</a></li>
+    </ul>
+
+    <!-- Your pet, wearing what is equipped -->
+    <div class="text-center mb-4">
+      <div id="petPreview" class="pet-avatar--preview mx-auto"></div>
+    </div>
+
+    <h2 class="h5 fw-bold mb-2">Backgrounds</h2>
+    <div id="backgroundGrid" class="row g-3 mb-4"></div>
+
+    <h2 class="h5 fw-bold mb-2">Hats</h2>
+    <div id="hatGrid" class="row g-3"></div>
+  </div>
+
+      <!-- Global scripts: Bootstrap + styles -->
+      <script type="module" src="/src/app.js"></script>
+
+      <!-- This page requires login (redirects to index.html if logged out) -->
+      <script type="module" src="/src/inventory.js"></script>
+</body>
+
+</html>
